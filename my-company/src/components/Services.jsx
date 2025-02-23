@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./Navbar";
 function Services() {
   return (
     <div style={{ padding: "20px" }}>
