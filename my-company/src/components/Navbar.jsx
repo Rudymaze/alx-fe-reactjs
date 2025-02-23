@@ -2,7 +2,12 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "gray",
+        display: "flex",
+        justifyContent: "center",
+      }}>
       <nav>
         <ul>
           <li>
