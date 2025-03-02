@@ -1,4 +1,5 @@
 import useRecipeStore from "./recipeStore";
+import { Links } from "react-router-dom";
 
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.recipes);
@@ -11,6 +12,8 @@ const RecipeList = () => {
           <p>{recipe.description}</p>
         </div>
       ))}
+
+      <Links to={`/recipes/${recipes[0].id}`}>filteredRecipe</Links>
     </div>
   );
 };
