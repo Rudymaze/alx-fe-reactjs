@@ -28,7 +28,6 @@ const RecipeDetails = ({ recipeId }) => {
         ))}
       </ol>
       <EditRecipeForm recipe={recipe} />
-      <DeleteRecipeButton recipeId={recipeId} />
     </div>
   );
 };

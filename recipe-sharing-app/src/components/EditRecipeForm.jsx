@@ -14,8 +14,8 @@ const EditRecipeForm = ({ recipeId, onCancel }) => {
     recipe.instructions.join("\n")
   );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const updatedRecipe = {
       ...recipe,
       title,
