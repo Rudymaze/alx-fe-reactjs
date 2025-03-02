@@ -1,7 +1,10 @@
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useRecipeStore } from "./recipeStore";
 
-const EditRecipeForm = ({ recipeId, onCancel }) => {
+const EditRecipeForm = () => {
+  const { recipeId } = useParams(); // Get the recipeId from the URL
+  const navigate = useNavigate();
   const recipe = useRecipeStore((state) =>
     state.recipes.find((recipe) => recipe.id === recipeId)
   );
@@ -26,7 +29,7 @@ const EditRecipeForm = ({ recipeId, onCancel }) => {
       instructions: instructions.split("\n").map((step) => step.trim()),
     };
     updateRecipe(updatedRecipe);
-    onCancel();
+    navigate(`/recipes/${recipeId}`); // Navigate back to RecipeDetails
   };
 
   return (
@@ -61,7 +64,7 @@ const EditRecipeForm = ({ recipeId, onCancel }) => {
         />
       </div>
       <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>
+      <button type="button" onClick={() => navigate(`/recipes/${recipeId}`)}>
         Cancel
       </button>
     </form>

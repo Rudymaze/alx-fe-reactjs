@@ -1,8 +1,8 @@
-import useRecipeStore from "./recipeStore";
-import EditRecipeForm from "./EditRecipeForm";
-import DeleteRecipeButton from "./DeleteRecipeButton";
+import { useParams, Link, Outlet } from "react-router-dom";
+import { useRecipeStore } from "./recipeStore";
 
-const RecipeDetails = ({ recipeId }) => {
+const RecipeDetails = () => {
+  const { recipeId } = useParams(); // Get the recipeId from the URL
   const recipe = useRecipeStore((state) =>
     state.recipes.find((recipe) => recipe.id === recipeId)
   );
@@ -27,7 +27,15 @@ const RecipeDetails = ({ recipeId }) => {
           <li key={index}>{step}</li>
         ))}
       </ol>
-      <EditRecipeForm recipe={recipe} />
+
+      {/* Links to edit and delete */}
+      <div>
+        <Link to={`/recipes/${recipeId}/edit`}>Edit Recipe</Link>
+        <Link to={`/recipes/${recipeId}/delete`}>Delete Recipe</Link>
+      </div>
+
+      {/* Outlet for nested routes (RecipeEdit and RecipeDelete) */}
+      <Outlet />
     </div>
   );
 };
