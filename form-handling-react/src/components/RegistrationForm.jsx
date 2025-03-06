@@ -1,24 +1,104 @@
 import React from "react";
+import { useState } from "react";
 
 const RegistrationForm = () => {
+  const { email, setEmail } = useState("");
+  const { password, setPassword } = useState("");
+  const { username, setUsername } = useState("");
+
+  // State for error messages
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const registerForm = () => {
+    let isValid = true;
+
+    // Validate username
+    if (username.length < 3) {
+      setUsernameError("Username must be at least 3 characters long.");
+      isValid = false;
+    } else {
+      setUsernameError("");
+    }
+
+    // Validate email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      setEmailError("Please enter a valid email address.");
+      isValid = false;
+    } else {
+      setEmailError("");
+    }
+
+    // Validate password
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters long.");
+      isValid = false;
+    } else {
+      setPasswordError("");
+    }
+
+    return isValid;
+  };
+
+  //   const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     console.log("Email:", email);
+  //     console.log("Password:", password);
+  //     console.log("username:", username);
+  //   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (registerForm()) {
+      // Form is valid, proceed with submission
+      console.log("Form submitted successfully!");
+      console.log({ username, email, password });
+      // You can add your form submission logic here (e.g., API call)
+    } else {
+      console.log("Form has errors. Please fix them.");
+    }
+  };
+
   return (
     <div>
       <h1>Registration Form</h1>
 
-      <form>
-        <label>
-          Name:
-          <input type="text" name="name" />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username">
+          Username:
+          <input
+            type="text"
+            name="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {usernameError && <p style={{ color: "red" }}>{usernameError}</p>}
         </label>
+
         <label>
           Email:
-          <input type="email" name="email" />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {emailError && <p style={{ color: "red" }}>{emailError}</p>}
         </label>
         <label>
           Password:
-          <input type="password" name="password" />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
         </label>
-        <input type="submit" value="Submit" />
+        <button type="submit">Register</button>
       </form>
     </div>
   );
