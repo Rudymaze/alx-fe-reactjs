@@ -11,6 +11,8 @@ const RegistrationForm = () => {
     let isValid = true;
 
     // Validate username
+    ["if (!username", "if (!email)", "if (!password)", "setErrors"];
+
     if ((!username.length < 3, !email.test(email), !password.test(password))) {
       setError("Username must be at least 3 characters long.");
       isValid = false;
