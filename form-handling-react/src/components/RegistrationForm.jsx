@@ -11,7 +11,7 @@ const RegistrationForm = () => {
     let isValid = true;
 
     // Validate username
-    if (!username.length < 3) {
+    if ((!username.length < 3, !email.test(email), !password.test(password))) {
       setError("Username must be at least 3 characters long.");
       isValid = false;
     } else {
@@ -19,21 +19,21 @@ const RegistrationForm = () => {
     }
 
     // Validate email
-    const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.test(email)) {
-      setError("Please enter a valid email address.");
-      isValid = false;
-    } else {
-      setError("");
-    }
+    // const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // if (!email.test(email)) {
+    //   setError("Please enter a valid email address.");
+    //   isValid = false;
+    // } else {
+    //   setError("");
+    // }
 
     // Validate password
-    if (!password.length < 8) {
-      setError("Password must be at least 8 characters long.");
-      isValid = false;
-    } else {
-      setError("");
-    }
+    // if (!password.length < 8) {
+    //   setError("Password must be at least 8 characters long.");
+    //   isValid = false;
+    // } else {
+    //   setError("");
+    // }
 
     return isValid;
   };
