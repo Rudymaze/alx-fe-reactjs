@@ -5,38 +5,34 @@ const RegistrationForm = () => {
   const { email, setEmail } = useState("");
   const { password, setPassword } = useState("");
   const { username, setUsername } = useState("");
-
-  // State for error messages
-  const [usernameError, setUsernameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const { error, setError } = useState("");
 
   const registerForm = () => {
     let isValid = true;
 
     // Validate username
-    if (username.length < 3) {
-      setUsernameError("Username must be at least 3 characters long.");
+    if (!username.length < 3) {
+      setError("Username must be at least 3 characters long.");
       isValid = false;
     } else {
-      setUsernameError("");
+      setError("");
     }
 
     // Validate email
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      setEmailError("Please enter a valid email address.");
+    const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.test(email)) {
+      setError("Please enter a valid email address.");
       isValid = false;
     } else {
-      setEmailError("");
+      setError("");
     }
 
     // Validate password
-    if (password.length < 8) {
-      setPasswordError("Password must be at least 8 characters long.");
+    if (!password.length < 8) {
+      setError("Password must be at least 8 characters long.");
       isValid = false;
     } else {
-      setPasswordError("");
+      setError("");
     }
 
     return isValid;
@@ -98,6 +94,7 @@ const RegistrationForm = () => {
           />
           {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
         </label>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Register</button>
       </form>
     </div>
