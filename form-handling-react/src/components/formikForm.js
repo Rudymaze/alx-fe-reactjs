@@ -6,7 +6,8 @@ const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()
     .password("Invalid password")
-    .required("Password is required"),
+    .required("Password is required")
+    .min("6 characters"),
 });
 
 const FormikForm = () => (
