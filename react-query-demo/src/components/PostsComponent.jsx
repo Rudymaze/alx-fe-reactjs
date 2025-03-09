@@ -20,6 +20,7 @@ function PostsComponent() {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   ["isError", "fetchPosts"];
+  ["cacheTime", "refetchOnWindowFocus", "keepPreviousData"];
   return (
     <>
       <div>
