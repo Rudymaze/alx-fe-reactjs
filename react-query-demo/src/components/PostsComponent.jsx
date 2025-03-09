@@ -33,6 +33,7 @@ function PostsComponent() {
           </div>
         ))}
       </div>
+      <button onClick={(e) => e.target.value}></button>
     </>
   );
 }
