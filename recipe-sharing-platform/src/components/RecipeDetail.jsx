@@ -49,11 +49,11 @@ const RecipeDetail = () => {
 
         {/* Cooking Steps Section */}
         <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-4">Cooking Steps</h2>
+          <h2 className="text-2xl font-semibold mb-4">Cooking Instructions</h2>
           <ol className="list-decimal list-inside">
-            {recipe.steps.map((step, index) => (
+            {recipe.instructions.map((instructions, index) => (
               <li key={index} className="text-gray-700 mb-2">
-                {step}
+                {instructions}
               </li>
             ))}
           </ol>
