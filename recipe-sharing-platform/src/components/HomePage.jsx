@@ -14,6 +14,13 @@ const HomePage = () => {
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-8 text-center">Recipes</h1>
+      <div className="text-center mb-8">
+        <Link
+          to="/add-recipe"
+          className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">
+          Add a New Recipe
+        </Link>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
           <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
