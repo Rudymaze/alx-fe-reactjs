@@ -4,7 +4,7 @@ const AddRecipeForm = () => {
   // State for form inputs
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [steps, setSteps] = useState("");
+  const [instructions, setInstructions] = useState("");
 
   // State for validation errors
   const [errors, setErrors] = useState({});
@@ -14,22 +14,22 @@ const AddRecipeForm = () => {
     e.preventDefault();
 
     // Validate form inputs
-    const validationErrors = {};
+    const validate = {};
     if (!title.trim()) {
-      validationErrors.title = "Title is required.";
+      validate.title = "Title is required.";
     }
     if (!ingredients.trim()) {
-      validationErrors.ingredients = "Ingredients are required.";
+      validate.ingredients = "Ingredients are required.";
     } else if (ingredients.split(",").length < 2) {
-      validationErrors.ingredients = "Please include at least two ingredients.";
+      validate.ingredients = "Please include at least two ingredients.";
     }
-    if (!steps.trim()) {
-      validationErrors.steps = "Preparation steps are required.";
+    if (!instructions.trim()) {
+      validate.instructions = "Preparation steps are required.";
     }
 
     // If there are errors, set them and stop submission
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+    if (Object.keys(validate).length > 0) {
+      setErrors(validate);
       return;
     }
 
@@ -43,7 +43,9 @@ const AddRecipeForm = () => {
       summary: "A new recipe added by the user.",
       imageUrl: "https://via.placeholder.com/400", // Placeholder image
       ingredients: ingredients.split(",").map((item) => item.trim()),
-      steps: steps.split("\n").map((step) => step.trim()),
+      instructions: instructions
+        .split("\n")
+        .map((instructions) => instructions.trim()),
     };
 
     console.log("New Recipe:", newRecipe);
@@ -51,7 +53,7 @@ const AddRecipeForm = () => {
     // Reset form fields
     setTitle("");
     setIngredients("");
-    setSteps("");
+    setInstructions("");
 
     alert("Recipe added successfully!");
   };
@@ -112,14 +114,14 @@ const AddRecipeForm = () => {
           <textarea
             id="steps"
             value={steps}
-            onChange={(e) => setSteps(e.target.value)}
+            onChange={(e) => setInstructions(e.target.value)}
             className={`mt-1 block w-full p-2 border ${
               errors.steps ? "border-red-500" : "border-gray-300"
             } rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500`}
             rows="5"
           />
-          {errors.steps && (
-            <p className="text-red-500 text-sm mt-1">{errors.steps}</p>
+          {errors.instructions && (
+            <p className="text-red-500 text-sm mt-1">{errors.instructions}</p>
           )}
         </div>
 
